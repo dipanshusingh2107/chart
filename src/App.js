@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes, Navigate,useNavigate } from "react-router-dom";
+import CodeEditor from "./components/Code";
+import Results from "./components/Results";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = ()=>{
+  const navigate = useNavigate();
+    return (
+      <React.Fragment>
+        <Routes>
+          <Route path="code" element={<CodeEditor navigate ={navigate}/>}/>
+          <Route path="results" element={<Results/>}/> 
+          <Route path='*' element = {<Navigate to ='code'/>}/>
+        </Routes>
+      </React.Fragment>
+    );
+  
 }
 
 export default App;
